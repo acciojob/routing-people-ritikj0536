@@ -13,14 +13,17 @@ function UserDetails() {
 
   // Fetch user details when id changes
   useEffect(() => {
-    async function fetchUsers(params){
+    async function fetchUsers(params) {
       setLoading(true);
-      const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+      const res = await fetch(
+        `https://jsonplaceholder.typicode.com/users/${id}`
+      );
       const data = await res.json();
-      // Store user data
-      setUser(data);
-      // Hide loading text
-      setLoading(false);
+      // ✅ Step 2: force loading state to be visible
+      setTimeout(() => {
+        setUser(data);
+        setLoading(false);
+      }, 300);
     }
     fetchUsers();
   }, [id]);
